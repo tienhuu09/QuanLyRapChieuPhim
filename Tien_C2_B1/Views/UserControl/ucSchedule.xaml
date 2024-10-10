@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Tien_C2_B1.ucSchedule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tien_C2_B1"
+             mc:Ignorable="d" Height="400">
+
+    <UserControl.Resources>
+        <local:ConverterStatus x:Key="ConverterStatus1" />
+    </UserControl.Resources>
+
+    <Grid>
+        <ListView x:Name="lvSchedule" 
+                    Grid.Column="1" 
+                    Grid.Row="1" 
+                    Width="auto" 
+                    Height="300"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    Style="{StaticResource lstView}"
+                    ItemContainerStyle="{StaticResource lstViewItem}"
+                    FontSize="14"
+                    Foreground="White">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Id" 
+                                        Width="50"
+                                        DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="NameMovie"
+                                        Width="120"
+                                        DisplayMemberBinding="{Binding Movie.Name}" />
+                        <GridViewColumn Header="NameCinema"
+                                        Width="120"
+                                        DisplayMemberBinding="{Binding Cinema.Name}" />
+                        <GridViewColumn Header="AirDate"
+                                        Width="90"
+                                        DisplayMemberBinding="{Binding AirDate, StringFormat={}{0:dd/MM/yyyy}}" />
+                        <GridViewColumn Header="Status" 
+                                        Width="120"
+                                        DisplayMemberBinding="{Binding Status, Converter={StaticResource ConverterStatus1}}" />
+
+                        <GridViewColumn Header="   ">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Lock" 
+                                                Name="btnLock"
+                                                Style="{StaticResource btnLock}"
+                                                Click="btnLock_Click"/>
+                                        <Button Content="Unlock" 
+                                                Name="btnUnlock" 
+                                                Style="{StaticResource btnUnlock}"
+                                                Click="btnUnlock_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

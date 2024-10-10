@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="Tien_C2_B1.ucOrder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tien_C2_B1"
+             mc:Ignorable="d" Height="300">
+
+    <Grid>
+        <ListView x:Name="lvOrder" 
+                  Grid.Column="1" 
+                  Grid.Row="1" 
+                  Width="1000"
+                  Height="300"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  Style="{StaticResource lstView}"
+                  ItemContainerStyle="{StaticResource lstViewItem}"
+                  FontSize="14"
+                  Foreground="White">
+
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Id" 
+                                        Width="50"
+                                        DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="IdScheduleST"
+                                        Width="80"
+                                        DisplayMemberBinding="{Binding IdScheduleST}" />
+                        <GridViewColumn Header="Movie"
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding NameMovie}" />
+                        <GridViewColumn Header="Cinema"
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding NameCinema}" />
+                        <GridViewColumn Header="CinemaType"
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding CinemaType}" />
+                        <GridViewColumn Header="CustomerName"
+                                        Width="150"
+                                        DisplayMemberBinding="{Binding CustomerName}" />
+                        <GridViewColumn Header="PhoneNumber"
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding PhoneNumber}" />
+                        <GridViewColumn Header="Ticket Booking Time"
+                                        Width="150"
+                                        DisplayMemberBinding="{Binding Date}" />
+                        <GridViewColumn Header="Total"
+                                        Width="80"
+                                        DisplayMemberBinding="{Binding Total}" />
+                        <GridViewColumn Header="Quantity"
+                                        Width="100"
+                                        DisplayMemberBinding="{Binding Count}" />
+                        <GridViewColumn Header="   ">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Detail" 
+                                                Name="btnDetail"
+                                                Style="{StaticResource btnDetail}"
+                                                Click="btnDetail_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

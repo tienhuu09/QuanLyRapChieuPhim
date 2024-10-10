@@ -1,0 +1,283 @@
+﻿<Window x:Class="Tien_C2_B1.OrderDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:local="clr-namespace:Tien_C2_B1"
+        mc:Ignorable="d"
+        WindowStyle="None"  
+        Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="OrderDetailView" Height="450" Width="600">
+
+    <Window.Resources>
+        <local:IndexListViewItemConverter x:Key="indexListViewItemConverter"/>
+        <local:ConverterStatus x:Key="ConverterStatus1" />
+    </Window.Resources>
+
+    <Grid>
+        <Border CornerRadius="10"
+                Background="White"
+                BorderThickness="4">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0" />
+                    <GradientStop Color="#DA34AE" Offset="0.75" />
+                    <GradientStop Color="#8A16C1" Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Order Detail View"
+                           Grid.Row="0"
+                           FontSize="20"
+                           Foreground="#DA34AE"
+                           HorizontalAlignment="Center"/>
+                <Button x:Name="btnClose"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource controlButton}"
+                        Tag="{StaticResource color4}"
+                        Click="btnClose_Click">
+                    <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}" />
+                </Button>
+
+                <Grid Grid.Row="1"
+                      Margin="0, 0, 0, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.17*"/>
+                        <ColumnDefinition Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Id Order: "
+                               FontSize="16"
+                               HorizontalAlignment="Right"/>
+
+                    <TextBox Name="txtId"
+                             Width="100"
+                             Height="25"
+                             FontSize="13"
+                             Grid.Column="1"
+                             IsReadOnly="True"
+                             VerticalAlignment="top"
+                             HorizontalAlignment="Left"
+                             Text="{Binding Path=UIOrder.Id, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Id ScheduleShowTime: "
+                               Margin="0, 30, 0, 0"
+                               HorizontalAlignment="Right"
+                               FontSize="16"/>
+
+                    <TextBox Width="100"
+                             Height="25"
+                             FontSize="13"
+                             Margin="0, 30, 0, 0"
+                             HorizontalAlignment="Left"
+                             Grid.Column="1"
+                             IsReadOnly="True"
+                             VerticalAlignment="Top" 
+                             Text="{Binding Path=UIOrder.IdScheduleST, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Cinema Name: "
+                               HorizontalAlignment="Right"
+                               Margin="0, 60, 0, 0"
+                               FontSize="16"/>
+
+                    <TextBox Width="100"
+                             Height="25"
+                             FontSize="13"
+                             Grid.Column="1"
+                             Margin="0, 60, 0, 0"
+                             IsReadOnly="True"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             Text="{Binding Path=UIOrder.NameCinema, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Cinema Type: "
+                               HorizontalAlignment="Right"
+                               Margin="0, 90, 0, 0"
+                               FontSize="16" />
+                    <TextBox Width="100"
+                             Height="25"
+                             FontSize="13"
+                             Grid.Column="1"
+                             Margin="0, 90, 0, 0"
+                             IsReadOnly="True"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             Text="{Binding Path=UIOrder.CinemaType, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Movie Name: "
+                               HorizontalAlignment="Right" 
+                               Margin="0, 120, 0, 0"
+                               FontSize="16" />
+                    <TextBox Width="100"
+                             Height="25"
+                             FontSize="13"
+                             Grid.Column="1"
+                             Margin="0, 120, 0, 0"
+                             IsReadOnly="True"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             Text="{Binding Path=UIOrder.NameMovie, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Customer Name: " 
+                                   FontSize="16"
+                                   HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,0,152,0" Grid.RowSpan="2"/>
+                        <TextBox Width="150"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Top" 
+                                 HorizontalAlignment="Center"
+                                 Text="{Binding Path=UIOrder.CustomerName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Phone Number: "
+                                   Margin="0,30,152,0"
+                                   FontSize="16" 
+                                   HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                        <TextBox Width="130"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 Margin="0, 30, 0, 0"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Left"
+                                 Text="{Binding Path=UIOrder.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Ticket Booking Time: "
+                                   Margin="0,60,152,0"
+                                   FontSize="16"
+                                   HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                        <TextBox Width="130"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 IsReadOnly="True"
+                                 Margin="0, 60, 0, 0"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Left"
+                                 Text="{Binding Path=UIOrder.Date, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Show Time: "
+                                   Margin="0,90,152,0"
+                                   FontSize="16"
+                                   HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                        <TextBox Width="130"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 IsReadOnly="True"
+                                 Margin="0, 90, 0, 0"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Left"
+                                 Text="{Binding Path=Order.ScheduleST.AirDate, StringFormat={x:Static local:Ulti.date}}" />
+
+
+                        <TextBlock Text="Duration: "
+                                   HorizontalAlignment="Right"
+                                   Margin="0,120,152,0"
+                                   FontSize="16" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                        <TextBox Width="100"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 Margin="0, 120, 0, 0"
+                                 IsReadOnly="True"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top" 
+                                 Text="{Binding Path=Order.ScheduleST.Schedule.Movie.Duration}"/>
+
+                        <TextBlock Text="Quantity Ticket: " 
+                                   HorizontalAlignment="Right"
+                                   Margin="0, 150, 0, 0"
+                                   FontSize="16"/>
+                        <TextBox Width="100"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 Margin="0, 150, 0, 0"
+                                 IsReadOnly="True"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                 Text="{Binding Path=UIOrder.Count, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Total: "
+                                   HorizontalAlignment="Right"
+                                   Margin="0, 180, 0, 0"
+                                   FontSize="16" />
+                        <TextBox Width="120"
+                                 Height="25"
+                                 FontSize="13"
+                                 Grid.Column="1"
+                                 Margin="0, 180, 0, 0"
+                                 IsReadOnly="True"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                 Text="{Binding Path=UIOrder.Total, UpdateSourceTrigger=PropertyChanged}" />
+
+                    </Grid>
+
+                    <ListView Name="lvDetailOrder"
+                              Width="auto"
+                              Height="200"
+                              Grid.Row="1"
+                              Grid.ColumnSpan="3"
+                              HorizontalAlignment="Left"
+                              ItemContainerStyle="{StaticResource lstViewItem}"
+                              ItemsSource="{Binding Order.lstDetailOrder, UpdateSourceTrigger=PropertyChanged}"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              FontSize="14">
+                        <ListView.View>
+                            <GridView x:Name="gridView">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="STT"
+                                                    DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Converter={StaticResource indexListViewItemConverter}}"/>
+                                    <GridViewColumn Header="Seat Type" 
+                                                    Width="80"
+                                                    DisplayMemberBinding="{Binding Age}" />
+                                    <GridViewColumn Header="Seat Id"
+                                                    Width="80"
+                                                    DisplayMemberBinding="{Binding SeatId}" />
+                                    <GridViewColumn Header="Seat Name" 
+                                                    Width="80"
+                                                    DisplayMemberBinding="{Binding SeatName}" />
+                                    <GridViewColumn Header="Price" 
+                                                    Width="100"
+                                                    DisplayMemberBinding="{Binding Price, StringFormat={}{0:N0} vnd}" />
+                                    <GridViewColumn Header="Discount" 
+                                                    Width="120"
+                                                    DisplayMemberBinding="{Binding Discount, StringFormat={}{0:N0} vnd}" />
+
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</Window>

@@ -1,0 +1,336 @@
+﻿<Window x:Class="Tien_C2_B1.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:local="clr-namespace:Tien_C2_B1"
+        mc:Ignorable="d"
+        Title="MainView" Height="700" Width="1300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        KeyDown="Window_KeyDown"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border CornerRadius="10"
+             BorderThickness="4">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0" />
+                <GradientStop Color="#DA34AE" Offset="0.75" />
+                <GradientStop Color="#8A16C1" Offset="1" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <!--Navigation Menu-->
+                <ColumnDefinition Width="250" />
+
+                <!--Content Section-->
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Navigation Menu-->
+            <Border CornerRadius="10,0,0,10"
+                    Grid.Column="0" >
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0" />
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <StackPanel>
+                    <!--Logo-->
+                    <StackPanel Orientation="Horizontal"
+                                Height="35"
+                                Margin="15, 25, 0, 40">
+                        <Image Source="/Images/clapperboard.png" />
+                        <TextBlock Text="CINEMA"
+                                Foreground="{StaticResource titleColor2}"
+                                FontSize="20"
+                                FontFamily="Montserrat"
+                                FontWeight="Medium"
+                                VerticalAlignment="Center"
+                                Margin="10" />
+                    </StackPanel>
+
+                    <!--Menu Buttons-->
+                    <RadioButton Name="menuBookTicket"
+                              Style="{StaticResource menuButton}"
+                              Tag="{StaticResource color1}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="TicketSimple" Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Book Ticket" Style="{StaticResource menuButtonText}" />
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Name="btnLogOut"
+                              Style="{StaticResource menuButton}"
+                              Tag="{StaticResource color6}"
+                              Click="btnClose_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="RightFromBracket" Style="{StaticResource menuButtonIcon}" />
+                            <TextBlock Text="Log Out" Style="{StaticResource menuButtonText}" />
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </Border>
+
+            <!--Main Section-->
+            <Border CornerRadius="0,10,10,0"
+                    Grid.Column="1" >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0" />
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.7*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <!--Control bar-->
+                        <RowDefinition Height="25" />
+                        <!--Header / caption-->
+                        <RowDefinition Height="35" />
+                        <!--Content section / Child view-->
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="220" />
+                        <RowDefinition Height="270" />
+                    </Grid.RowDefinitions>
+
+                    <!--Control bar-->
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}"
+                                Click="btnClose_Click">
+                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}" />
+                        </Button>
+
+                        <Button x:Name="btnMaximize"
+                             Style="{StaticResource controlButton}"
+                             Tag="{StaticResource color6}"
+                             Click="btnMaximize_Click">
+                            <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}" />
+                        </Button>
+
+                        <Button x:Name="btnMinimize"
+                             Style="{StaticResource controlButton}"
+                             Tag="{StaticResource color8}"
+                             Click="btnMinimize_Click">
+                            <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}" />
+                        </Button>
+                    </StackPanel>
+
+                    <!--Header / Caption-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <fa:IconImage Icon="Home" 
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource titleColor2}"
+                                          Margin="35, 0, 10, 0"/>
+
+                            <TextBlock Text="Staff Management"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="16"
+                                       FontFamily="Monterrat"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="1"
+                                Margin="10, 20, 0, 0"
+                                Orientation="Vertical"
+                                VerticalAlignment="Top">
+                        
+                        <TextBlock Text="Information"
+                                   FontSize="24"
+                                   Margin="40, 0, 0, 10"
+                                   Foreground="White"/>
+                        
+                        <TextBlock Text="Customer Name: "
+                                   FontSize="18" 
+                                   Foreground="White" 
+                                   Height="30"/>
+                        <TextBox x:Name="txtCustomerName"
+                                 FontSize="16"
+                                 Width="200"
+                                 Height="25"
+                                 HorizontalAlignment="Left"/>
+
+                        <TextBlock Text="Phone Number: "
+                                   FontSize="18"
+                                   Foreground="White" 
+                                   Margin="0, 10, 0, 0"
+                                   Height="30"/>
+                        <TextBox x:Name="txtPhoneNumber"
+                                 FontSize="16"
+                                 Width="200"
+                                 Height="25"
+                                 HorizontalAlignment="Left"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                Margin="10, 10, 0, 0"
+                                Orientation="Horizontal">
+                        <GroupBox Header="Selection Movie"
+                                  Foreground="White"
+                                  FontSize="18"
+                                  HorizontalAlignment="Left">
+                            <ComboBox Name="cbMovie"
+                                      Width="200"
+                                      DisplayMemberPath="Name"
+                                      SelectedIndex="-1"
+                                      ItemsSource="{Binding Movies}"
+                                      SelectionChanged="cbMovie_SelectionChanged">
+                            </ComboBox>
+                        </GroupBox>
+                        <TextBlock Name="txtNotify" Text="Showtime is empty"
+                                   Visibility="Hidden"
+                                   Foreground="Red"
+                                   FontSize="20"
+                                   Margin="20, 25, 0, 0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3"
+                                Width="auto">
+                            <local:ucScheduleShowTime x:Name="lstView"
+                                                      SelectionChanged="lstView_SelectionChanged"/>
+                    </StackPanel>
+                    
+                    <Grid Grid.Row="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Background="LightBlue">
+                            <TextBlock Text="Screen" 
+                                       FontSize="16"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Canvas x:Name="myCanvas" 
+                                Grid.Row="1"
+                                Background="AliceBlue">
+                        </Canvas>
+                    </Grid>
+
+                    <StackPanel Grid.Row="5"
+                                Grid.Column="1">
+                        
+                        <Border CornerRadius="3"
+                                BorderThickness="4">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#DA34AE" Offset="0.75" />
+                                    <GradientStop Color="#8A16C1" Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            
+                            <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="10, 20, 0, 0"
+                                    HorizontalAlignment="Left">
+                            
+                                <TextBlock Text="Books Ticket"
+                                           Foreground="White"
+                                           Margin="40, 0, 0, 0"
+                                           FontSize="22"/>
+                            
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Number of tickets: "
+                                               FontSize="17"
+                                               Foreground="White"/>
+                                    <TextBox Name="txtQuan"
+                                             Text="0"
+                                             Width="60"
+                                             Height="28"
+                                             FontSize="17"
+                                             IsReadOnly="True"
+                                             Margin="13,0,0,0"
+                                             VerticalAlignment="Top"/>
+                                </StackPanel>
+
+                                <StackPanel Name="stkType"
+                                            Orientation="Horizontal"
+                                            Margin="0, 15, 0, 15">
+                                    <TextBlock Text="Ticket type: "
+                                               FontSize="18"
+                                               Foreground="White"/>
+                                    <ComboBox Name="cbType" 
+                                              FontSize="17"
+                                              Width="120"/>
+                                </StackPanel>
+
+                                <StackPanel Name="stkTotal"
+                                            Orientation="Horizontal"
+                                            Margin="0, 0, 0, 15">
+                                    <TextBlock Text="Total: "
+                                               FontSize="18"
+                                               Foreground="White"/>
+                                    <TextBox Name="txtTotal"
+                                             IsReadOnly="True"
+                                             Margin="48,0,0,0"
+                                             FontSize="17"
+                                             Width="120" 
+                                             Height="25"/>
+                                </StackPanel>
+
+                                <Button Name="btnBookTicket"
+                                        Content="Confirm"
+                                        FontSize="17"
+                                        Width="100"
+                                        Height="34"
+                                        Click="btnBookTicket_Click">
+                                </Button>
+
+                                <Button Name="btnReset"
+                                        Content="Reset"
+                                        FontSize="17"
+                                        Width="100"
+                                        Height="33"
+                                        Margin="0, 10, 0, 10"
+                                        Click="btnReset_Click">
+                                </Button>
+
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
